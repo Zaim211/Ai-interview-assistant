@@ -117,5 +117,5 @@ export async function signOut() {
     const user = await getCurrentUser();
     return !!user;
   }
-  
 
+ 
