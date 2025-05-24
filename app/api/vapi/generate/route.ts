@@ -12,6 +12,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
   const { type, userid, role, amount, techstack, level } = await request.json();
+  console.log('POST request received with data:', role, type, amount, techstack, level, userid);
 
   try {
     const { text: questions } = await generateText({
@@ -44,12 +45,15 @@ export async function POST(request: Request) {
     };
 
     await db.collection("interviews").add(interview);
+    console.log("Interview created successfully:", interview);
     return Response.json(
       {
         success: true,
       },
       { status: 200 }
     );
+
+
   } catch (error) {
     console.error("Error in POST request:", error);
     return Response.json(
